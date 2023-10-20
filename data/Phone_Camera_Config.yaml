@@ -1,0 +1,32 @@
+# blocksize
+blocksize: 1024
+# 要测试的版本号，2.X版本填2,3.X版本填3
+Fcms_version: 3
+# 为0，点击上载后会将图片存储在picture/2或3目录  为1将会将播放表上载随后再与2或3文件下的bmp图片对比
+save_or_contrast_bmp: 1
+# 是否开启字符串断言1为开启，0为关闭
+whether_str_affirm: 1
+#将图片保存到远程以供查看，下方为保存图片文件夹的路径
+target_folder: //192.168.30.65/yf1/wengzhichao/picture/
+# 企业微信机器人地址,必须与图片服务器在一个局域网下才能查看图片
+Webhook_url: https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=4503775b-9539-43ce-87b0-1c10f3dd1b5a
+# 企业微信机器人地址,这个为压缩后直接展示在企业微信，有网即可查看
+Wenhook_url_1: https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=00b41381-5906-462a-8c7e-e1bb173a8eab
+# SMTP发件人邮箱
+EMAIL_ADDRESS: 2231742813@qq.com
+# SMTP的授权码(QQ邮箱设置里找)
+EMAIL_PASSWORD: ervlwvcemlkidifa
+# 发件人邮箱
+SENDER: 2231742813@qq.com
+# 收件人邮箱
+RECEIVER: 2508427602@qq.com
+# 是否开启拍照功能 1开启 0关闭 下面三个若想开启whether_camera必须为1
+whether_camera: 0
+# 是否邮件推送功能 1开启 0关闭
+whether_sendemail: 0
+# 是否开启企业微信内网机器人推送功能 1开启 0关闭
+whether_Webhook_url: 1
+# 是否开启企业微信机器人推送外网可看功能 1开启 0关闭
+Webhook_url_Wenhook_url_1: 0
+# 返回的帧是否带帧类型 0是不带 1是带
+return_funcode: 0
