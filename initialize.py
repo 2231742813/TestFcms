@@ -7,25 +7,35 @@ from A001_get_xstudio_version import GetXstudioVersion
 devicesdatas = Read_Config_Yaml().Devices_yaml()
 
 
-def initialize_folder() :
-    for i in devicesdatas :
-        file_path = f'./picture/{i["device_type"]}/{i["xstudio_version"]}/{i["screen_width"]} {i["screen_height"]}'
-        os.makedirs(file_path, exist_ok = True)  # Create the directory and its parents if they don't exist
-        open(file_path + '/Test image storage path.txt', 'w').close()  # Create a file within the directory
+def create_directory(path):
+    os.makedirs(path, exist_ok=True)  # Create the directory and its parents if they don't exist
+    open(os.path.join(path, '测试图片路径.txt'), 'w').close()  # Create a file within the directory
 
-        file_path1 = f'./picture/{i["device_type"]}/{i["xstudio_version"]}/{i["screen_width"]} {i["screen_height"]}/Now'
-        os.makedirs(file_path1, exist_ok = True)  # Create the directory and its parents if they don't exist
-        open(file_path1 + '/Now image storage path.txt', 'w').close()  # Create a file within the directory
+def create_subdirectories(path):
+    create_directory(path)
+    now_path = os.path.join(path, 'Now')
+    create_directory(now_path)
+    os.makedirs(os.path.join(now_path, 'different_bak'), exist_ok=True)  # Create the directory and its parents if they don't exist
+    open(os.path.join(now_path, 'different_bak', '测试异常的图片备份目录.txt'), 'w').close()  # Create a file within the directory
+    return now_path
 
-        file_path2 = f'./picture/{i["device_type"]}/{i["xstudio_version"]}/{i["screen_width"]} {i["screen_height"]}/Now/different_bak'
-        os.makedirs(file_path2, exist_ok = True)  # Create the directory and its parents if they don't exist
-        open(file_path2 + '/测试异常的图片备份目录.txt', 'w').close()  # Create a file within the directory
-        # 遍历删除file_path1路径下的bmp文件
-        for file in os.listdir(file_path1) :
-            if file.endswith(".bmp") :
-                file_path = os.path.join(file_path1, file)
-                os.remove(file_path)
-# initialize_folder()
+def delete_bmp_files(path):
+    for file in os.listdir(path):
+        if file.endswith(".bmp"):
+            file_path = os.path.join(path, file)
+            os.remove(file_path)
+
+def initialize_folder():
+    for i in devicesdatas:
+        file_path = os.path.join('./picture', str(i["device_type"]), str(i["xstudio_version"]), f'{i["screen_width"]} {i["screen_height"]}')
+        now_path = create_subdirectories(file_path)
+        delete_bmp_files(now_path)
+
+initialize_folder()
+
+
+
+
 
 def initialize_device() :
     for i in devicesdatas :
