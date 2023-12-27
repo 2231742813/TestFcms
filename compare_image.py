@@ -1,6 +1,8 @@
 from PIL import Image
 from PIL import ImageChops
 from Set_log import logger
+from datetime import datetime
+import shutil
 
 
 class CompareImage:
@@ -29,16 +31,31 @@ class CompareImage:
                             imgA.putpixel((x, y), (255, 255, 255))
                         else:
                             imgA.putpixel((x, y), (0, 0, 0))
-                imgA.save('{0}/different-{1}.bmp'.format(path_two,image_id))
-                return 0
 
+                error_url = ""
+                for i in range(min(len(path_one), len(path_two))) :
+                    if path_one[i] == path_two[i] :
+                        error_url += path_one[i]
+                    else :
+                        break
+                nowtime = datetime.now().strftime("%Y%m%d%H%M%S")
+                error_pic_url = error_url + 'Now/different_bak/{0}_{1}.bmp'.format(image_id,nowtime)
+                # print(error_pic_url)
+                imgA.save(error_pic_url)
+                error_picbak_url = error_url + 'Now/different_bak/{0}_{1}_O.bmp'.format(image_id, nowtime)
+                # print(path_two)
+                # print(error_picbak_url)
+                shutil.copy(path_two, error_picbak_url)
+                return 0
         except Exception as e:
             logger.error(e)
             logger.error("{0} {1}".format(e, "图片大小和box对应的宽度不一致!"))
             return 0
 
-#
 
 # if __name__ == "__main__":
-#     a = CompareImage().compare_image('./picture/test/16.bmp','./picture/2/16.bmp',16)
-#     print(a)
+#     contrast_result = CompareImage().compare_image('picture/X70/2/512 384/1.bmp','picture/X70/2/512 384/Now/1.bmp',1)
+#     if contrast_result:
+#         print('图片对比通过')
+#     else:
+#         print('shibai')
