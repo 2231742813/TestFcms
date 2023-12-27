@@ -4,7 +4,6 @@ import csv
 import socket
 import threading
 import time
-
 import wx
 import yaml
 from retrying import retry

@@ -28,7 +28,7 @@ class MyLogging(logging.Logger):
             self.addHandler(handle1)
 # 因为一个项目的日志都是写入到一个日志文件的，所以可以把name，file这两个参数写死，直接实例化
 # 后期每个模块调用就不用实例化，导入可以直接使用
-logger = MyLogging("log",file="log.txt")
+logger = MyLogging("log",file="./log/log.log")
 
 # if __name__ == '__main__':
 #     mlogger = MyLogging("abc")

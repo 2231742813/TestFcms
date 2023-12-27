@@ -32,13 +32,15 @@ class SetBlocksize(FcmsTool) :
             res = msg.hex()[6 :8]
             code = chr(int(res, 16))
             if code == '0' :
-                logger.info('设置可变信息标志的blocksize成功 %s' % self.size)
+                logger.info('设置可变信息标志的blocksize成功 {0} {1}'.format(self.ip,self.size))
+                print("{}set block成功".format(self.ip))
             else :
-                logger.error('设置可变信息标志的blocksize失败 %s' % self.size)
+                logger.error('设置可变信息标志的blocksize  失败{0} {1}'.format(self.ip,self.size))
+                print("{} set block失败".format(self.ip))
         except Exception as e :
-            logger.error("设置blocksize异常")
+            logger.error("{}设置blocksize异常".format(self.ip))
+            print("{}set block异常".format(self.ip))
             logger.error(e)
 
-
 # if __name__ == '__main__' :
-#     SetBlocksize(ip = '202.11.11.3', port = 2929).setblocksize()
+#     SetBlocksize(ip = '10.10.10.188', port = 2929).setblocksize()

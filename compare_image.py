@@ -29,7 +29,7 @@ class CompareImage:
                             imgA.putpixel((x, y), (255, 255, 255))
                         else:
                             imgA.putpixel((x, y), (0, 0, 0))
-                imgA.save('./picture/different/{}.bmp'.format(image_id))
+                imgA.save('{0}/different-{1}.bmp'.format(path_two,image_id))
                 return 0
 
         except Exception as e:

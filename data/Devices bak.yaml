@@ -1,0 +1,33 @@
+- protocol: fcms
+  device_type: X70
+  device_name: 测试的x70
+  xstudio_version: 2
+  screen_width: 512
+  screen_height: 384
+  device_ip : 10.10.10.188
+  device_port: 2929
+- protocol: fcms
+  device_type: X90
+  device_name: 测试的x90
+  xstudio_version: 3
+  screen_width: 960
+  screen_height: 720
+  device_ip : 10.10.10.180
+  device_port: 2929
+- protocol: fcms
+  device_type: X91
+  device_name: 测试的x91
+  xstudio_version: 3
+  screen_width: 1152
+  screen_height: 648
+  device_ip : 10.10.10.160
+  device_port: 2929
+- protocol: fcms
+  device_type: X70
+  device_name: 测试的x70_3.X版本
+  xstudio_version: 3
+  screen_width: 480
+  screen_height: 192
+  device_ip : 10.10.10.170
+  device_port: 2929
+

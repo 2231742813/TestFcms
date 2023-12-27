@@ -9,7 +9,57 @@ data = Read_Phone_Camera_Config()
 target_folder = data['target_folder']
 Wenhook_url = data['Webhook_url']
 Wenhook_url_1 = data['Wenhook_url_1']
+webhook_url2 = data['webhook_url2']
 
+def wenhook_for_loop(message) :
+    # API URL
+    url = webhook_url2
+    # 请求体数据
+    datas = {
+        "msgtype" : "text",
+        "text" : {
+            "content" : "{0}".format(message)
+        }
+    }
+
+    # 发送请求
+    response = requests.post(url = url, json = datas)
+
+def wenhook_send_message(message) :
+    url = webhook_url2
+    # 请求体数据
+    datas = {
+        "msgtype" : "text",
+        "text" : {
+            "content" : "初始化信息 \n{0}".format(message)
+        }
+    }
+    # 发送请求
+    response = requests.post(url = url, json = datas)
+    print("初始化信息发送结果 {0}".format(response.text))
+
+
+# wenhook_send_message('123456')
+
+
+def wenhook_send_error_playlist(*args) :
+    msg = ''
+    for arg in args :
+        msg = msg + str(arg) + '\n'
+    # API URL
+    url = webhook_url2
+    # 请求体数据
+    datas = {
+        "msgtype" : "text",
+        "text" : {
+            "content" : "Failed \n{}".format(msg)
+        }
+    }
+    # 发送请求
+    response = requests.post(url = url, json = datas)
+    print("异常信息发送结果 {0}".format(response.text))
+
+# wenhook_send_error_playlist()
 
 # 必须与图片服务器在一个局域网下才能查看图片
 def Wenhook_send(picture_name, titles='默认标题', descriptions='默认描述') :
@@ -112,20 +162,4 @@ def Wenhook_send_1(picture_name) :
     print(response.text)
 
 
-def Wenhook_send_picuter_result(playlis_id,playlst) :
-    # API URL
-    url = Wenhook_url_1
-    # 请求体数据
-    datas = {
-        "msgtype" : "text",
-        "text" : {
-            "content" : "异常播放表ID：" + str(playlis_id) + '\n' + playlst ,
-            # "mentioned_list" : ["wangqing", "@all"],
-            # "mentioned_mobile_list" : ["13800001111", "@all"]
-        }
-    }
 
-    # 发送请求
-    response = requests.post(url = url, json = datas)
-    print("图片对比")
-    print(response.text)
