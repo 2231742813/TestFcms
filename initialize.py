@@ -31,9 +31,7 @@ def initialize_folder():
         now_path = create_subdirectories(file_path)
         delete_bmp_files(now_path)
 
-initialize_folder()
-
-
+# initialize_folder()
 
 
 
