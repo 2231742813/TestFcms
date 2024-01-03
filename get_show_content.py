@@ -1,7 +1,7 @@
 from FcmsTool import FcmsTool
 from Set_log import logger
 
-
+# 取当前显示内容
 class GetShowContent(FcmsTool) :
 
     def __init__(self, ip) :

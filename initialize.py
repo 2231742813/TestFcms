@@ -6,7 +6,7 @@ from A001_get_xstudio_version import GetXstudioVersion
 
 devicesdatas = Read_Config_Yaml().Devices_yaml()
 
-
+# 初始化文件夹
 def create_directory(path):
     os.makedirs(path, exist_ok=True)  # Create the directory and its parents if they don't exist
     open(os.path.join(path, '测试图片路径.txt'), 'w').close()  # Create a file within the directory

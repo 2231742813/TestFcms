@@ -1,6 +1,7 @@
 from FcmsTool import FcmsTool
 
 
+# 类型控制器中生成dir.txt
 class Get(FcmsTool) :
     def __init__(self, ip='202.11.11.1', port=2929, outtime=10) :
         super().__init__(ip, port, outtime = 2)
@@ -11,9 +12,10 @@ class Get(FcmsTool) :
         name = '../../log/'.encode('gbk')
         check_code = self.crc16_xmodem(
             (self.frame_addres1 + self.frame_addres2 + frame_type1 + frame_type2 + name).hex())
-        self.a.send(self.frame_headers + frame_type1 + frame_type2 + name+ check_code  + self.frame_end)
+        self.a.send(self.frame_headers + frame_type1 + frame_type2 + name + check_code + self.frame_end)
         res = self.a.recv(2048)
         print(res.hex())
 
-
-Get().get_time()
+#
+# if __name__ == "__main__" :
+#     Get(ip = '10.10.10.180',port = 2929).get_time()

@@ -2,6 +2,7 @@ from FcmsTool import FcmsTool
 from Set_log import logger
 import base64
 
+# 设置blocksize
 
 class SetBlocksize(FcmsTool) :
     def __init__(self, ip='202.11.11.1', port=2929) :
@@ -33,13 +34,13 @@ class SetBlocksize(FcmsTool) :
             code = chr(int(res, 16))
             if code == '0' :
                 logger.info('设置可变信息标志的blocksize成功 {0} {1}'.format(self.ip,self.size))
-                print("{}set block成功".format(self.ip))
+                print("{} set block成功 ".format(self.ip))
             else :
                 logger.error('设置可变信息标志的blocksize  失败{0} {1}'.format(self.ip,self.size))
-                print("{} set block失败".format(self.ip))
+                print("{} set block失败 ".format(self.ip))
         except Exception as e :
             logger.error("{}设置blocksize异常".format(self.ip))
-            print("{}set block异常".format(self.ip))
+            print("{} set block异常".format(self.ip))
             logger.error(e)
 
 # if __name__ == '__main__' :

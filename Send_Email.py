@@ -8,6 +8,8 @@ from email.mime.image import MIMEImage
 
 from read_yaml import Read_Phone_Camera_Config
 
+# 发送邮件
+
 # 读取yaml配置文件
 data = Read_Phone_Camera_Config()
 emil_address = data['EMAIL_ADDRESS']

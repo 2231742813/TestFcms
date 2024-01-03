@@ -1,5 +1,5 @@
 import logging
-
+# 下载图片的log.config
 class MyLogging(logging.Logger):
     def __init__(self,name,level = logging.INFO,file = None):
         """

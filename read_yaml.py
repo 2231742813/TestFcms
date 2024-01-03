@@ -5,6 +5,8 @@ import csv
 
 yaml.warnings({'YAMLLoadWarning': False})
 
+# 读取yaml文件
+
 
 #  读取host与port
 class Read_host_port:
@@ -48,6 +50,13 @@ class Read_Config_Yaml :
             f.close()
             return data
 
+    def SSH_yaml(self):
+        with open('./data/ssh.yaml', mode = 'r', encoding = 'utf-8') as f :
+            data = yaml.safe_load(f)
+            f.close()
+            return data
+# res = Read_Config_Yaml().SSH_yaml()
+# print(res['hostname'])
 
 # res = Read_Config_Yaml().Devices_yaml()
 # for i in res:

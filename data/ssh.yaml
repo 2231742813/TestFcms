@@ -1,0 +1,9 @@
+# port
+port: 22
+# username
+username: sansi
+# password
+password: Sansi@1280
+# 上传的路径
+bin_path: /home/sansi/xstudiopro
+
