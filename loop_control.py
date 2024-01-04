@@ -69,20 +69,19 @@ def loop_control(device, item) :
             time.sleep(wait_time // 2)
             file_path = f'./picture/{device["device_type"]}/{device["xstudio_version"]}/{device["screen_width"]} {device["screen_height"]}'
             file_path1 = f'./picture/{device["device_type"]}/{device["xstudio_version"]}/{device["screen_width"]} {device["screen_height"]}/Now'
+            save0 = '{0}/{1}.bmp'.format(file_path, playlist_id)
+            save1 = '{0}/{1}.bmp'.format(file_path1, playlist_id)
             if save_or_contrast_bmp == 0 :
                 print("下载图片")
                 logger.info("下载图片")
-                DownBmp(ip = ip, port = port).downbmp("{0}/{1}.bmp".format(file_path, playlist_id))
+                DownBmp(ip = ip, port = port).downbmp(save0)
                 time.sleep(wait_time // 2)
             if save_or_contrast_bmp == 1 :
                 logger.info("下载图片并对比")
                 print("下载图片并对比")
-                DownBmp(ip = ip, port = port).downbmp("{0}/{1}.bmp".format(file_path1, playlist_id))
+                DownBmp(ip = ip, port = port).downbmp(save1)
                 time.sleep(wait_time // 2)
-                contrast_result = CompareImage().compare_image("{0}/{1}.bmp".format(file_path, playlist_id),
-                                                               "{0}/{1}.bmp".format(file_path1, playlist_id).format(
-                                                                   playlist_id),
-                                                               playlist_id)
+                contrast_result = CompareImage().compare_image(save0,save1,playlist_id)
                 logger.warning("对比图片结果 {}".format(contrast_result))
                 if contrast_result :
                     print('图片对比通过')
@@ -90,8 +89,10 @@ def loop_control(device, item) :
                     wenhook_send_error_playlist(device_name, playlist_id, titles, playlist)
                     # 是否开启企业微信通知
                     if error_pic_send_switch == 1 :
-                        wenhook_for_error_pic("{0}/{1}.bmp".format(file_path, playlist_id))
-                        wenhook_for_error_pic("{0}/{1}.bmp".format(file_path1, playlist_id).format(playlist_id))
+                        # 期望显示的效果
+                        wenhook_for_error_pic(save0)
+                        # 实际显示的效果
+                        wenhook_for_error_pic(save1)
         if whether_many_frame == 1:
             pic_list = handle_playlist(playlist)
             timelist = [int(x) for x in pic_list]
@@ -110,18 +111,18 @@ def loop_control(device, item) :
                 time.sleep(waittime)
                 file_path = f'./picture/{device["device_type"]}/{device["xstudio_version"]}/{device["screen_width"]} {device["screen_height"]}'
                 file_path1 = f'./picture/{device["device_type"]}/{device["xstudio_version"]}/{device["screen_width"]} {device["screen_height"]}/Now'
+                save0 = "{0}/{1}-{2}.bmp".format(file_path,playlist_id,i)
+                save1 = "{0}/{1}-{2}.bmp".format(file_path1, playlist_id,i)
                 if save_or_contrast_bmp == 0 :
                     print("下载图片")
                     logger.info("下载图片")
-                    res3 = DownBmp(ip = ip, port = port).downbmp("{0}/{1}-{2}.bmp".format(file_path, playlist_id,i))
+                    res3 = DownBmp(ip = ip, port = port).downbmp(save0)
                     jiange_time = res3
                 if save_or_contrast_bmp == 1 :
                     logger.info("下载图片并对比")
                     print("下载图片并对比")
-                    res3 = DownBmp(ip = ip, port = port).downbmp("{0}/{1}-{2}.bmp".format(file_path1, playlist_id,i))
-                    contrast_result = CompareImage().compare_image("{0}/{1}-{2}.bmp".format(file_path, playlist_id,i),
-                                                                   "{0}/{1}-{2}.bmp".format(file_path1, playlist_id,i),
-                                                                   playlist_id)
+                    res3 = DownBmp(ip = ip, port = port).downbmp(save1)
+                    contrast_result = CompareImage().compare_image(save0,save1,playlist_id)
                     logger.warning("对比图片结果 {}".format(contrast_result))
                     jiange_time = res3
                     if contrast_result :
@@ -130,8 +131,8 @@ def loop_control(device, item) :
                         wenhook_send_error_playlist(device_name, playlist_id, titles, playlist)
                         # 是否开启企业微信通知
                         if error_pic_send_switch == 1 :
-                            wenhook_for_error_pic("{0}/{1}-{2}.bmp".format(file_path, playlist_id,i))
-                            wenhook_for_error_pic("{0}/{1}-{2}.bmp".format(file_path1, playlist_id,i))
+                            wenhook_for_error_pic(save0)
+                            wenhook_for_error_pic(save1)
 
     except Exception as e :
         logger.error("Error while {}".format(e))
