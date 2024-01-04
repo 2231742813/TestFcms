@@ -2,6 +2,7 @@ from FcmsTool import FcmsTool
 from read_yaml import Read_Phone_Camera_Config
 from log_for_down import logger
 from Webhook_send_msg import wenhook_send_error_playlist
+from datetime import datetime
 
 config_data = Read_Phone_Camera_Config()
 blocksize = int(config_data['blocksize'])
@@ -9,12 +10,13 @@ blocksize = int(config_data['blocksize'])
 
 class DownBmp(FcmsTool) :
     def __init__(self, ip, port, outtime=5) :
-        super().__init__(ip, port, outtime=8)
+        super().__init__(ip, port, outtime = 8)
         logger.info("下载bmp 控制器信息：%s %s" % (ip, port))
         self.size = 1024
 
     def downbmp(self, bmp_url) :
         try :
+            start = datetime.now()
             # 帧类型
             frame_type1 = b'0'
             frame_type2 = b'9'
@@ -57,13 +59,16 @@ class DownBmp(FcmsTool) :
 
                     logger.info('触发break 下载完成')
                     print('{} 图片下载完成'.format(bmp_url))
-                    break
+                    end = datetime.now()
+                    seconds = int((end - start).total_seconds())
+                    logger.info('下载图片耗时 {0}'.format(seconds))
+                    return seconds
         except Exception as e :
-            wenhook_send_error_playlist('error下载图片异常\n', str(self.ip), str(self.port),str(bmp_url))
+            wenhook_send_error_playlist('error下载图片异常\n', str(self.ip), str(self.port), str(bmp_url))
             logger.error("下载图片异常")
             logger.error(e)
 
 
-
-# if __name__ == "__main__":
-#    DownBmp(ip = '10.10.10.188', port = 2929).downbmp("2.bmp")
+# if __name__ == "__main__" :
+#     res = DownBmp(ip = '10.10.10.180', port = 2929).downbmp("4.bmp")
+#     print(10-res)

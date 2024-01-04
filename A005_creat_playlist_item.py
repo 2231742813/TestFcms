@@ -4,58 +4,59 @@ from datetime import datetime
 
 
 
-
-def down():
-    start = datetime.now()
-    print("start---------Down")
-    randomtime = random.randint(5,10)
-    time.sleep(randomtime)
-    end = datetime.now()
-    sumtime = end - start
-    print("end--------------Down")
-    print(sumtime)
-    return down()
-
-timelist = ['2300', '1700', '1300', '2000','1500']
-timelist = [int(x) for x in timelist]
-timelist = [x // 100 for x in timelist]
-timelist_2 = [x // 2 for x in timelist]
-print(timelist)
-print(timelist_2)
-jiange_time = 0
-for i in range(len(timelist)) :
-    if i == 0:
-        waittime = timelist_2[i]
-    else:
-        waittime = timelist[i-1] + timelist_2[i] - jiange_time
-    print("waittime: ", waittime)
-    time.sleep(waittime)
-    res = down()
-    jiange_time = res
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# # 调试取当前显示画面
+# def down():
+#     start = datetime.now()
+#     print("start---------Down")
+#     randomtime = random.randint(5,10)
+#     time.sleep(randomtime)
+#     end = datetime.now()
+#     sumtime = end - start
+#     print("end--------------Down")
+#     print(sumtime)
+#     return down()
 #
-# # 生成10条数据
-# for i in range(20):
-#     item_no = i
-#     item_data = f"{random.randint(900, 3000)},1,1,\\fs6464 {i+1} "
-#     print(f"item{item_no} = {item_data}")
+# timelist = ['2300', '1700', '1300', '2000','1500']
+# timelist = [int(x) for x in timelist]
+# timelist = [x // 100 for x in timelist]
+# timelist_2 = [x // 2 for x in timelist]
+# print(timelist)
+# print(timelist_2)
+# jiange_time = 0
+# for i in range(len(timelist)) :
+#     if i == 0:
+#         waittime = timelist_2[i]
+#     else:
+#         waittime = timelist[i-1] + timelist_2[i] - jiange_time
+#     print("waittime: ", waittime)
+#     time.sleep(waittime)
+#     res = down()
+#     jiange_time = res
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 生成10条播放表数据
+for i in range(30):
+    # item_no = i
+    keep_time = random.randint(1500, 3500)
+    # item_data = f"{0},1,1,{0} {1} ".format(keep_time,i)
+    print("item{0} = {1},1,1,{1} {0}".format(i,keep_time))
 
 
 # timelist = []

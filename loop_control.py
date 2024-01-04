@@ -96,40 +96,34 @@ def loop_control(device, item) :
             pic_list = handle_playlist(playlist)
             timelist = [int(x) for x in pic_list]
             timelist = [x // 100 for x in timelist]
-            jiange_time = 7
-            num = 0
-            newlist = [jiange_time]
-            for i in range(len(timelist) - 1) :
-                num = newlist[i] + timelist[i]
-                # print(num)
-                newlist.append(num)
-            print(newlist)
-            for i in range(len(newlist)) :
-                if i == 0 :
-                    waittime = newlist[i]
-                else :
-                    waittime = newlist[i] - newlist[i - 1] - 7
-                print('等待下一个播放项 {}S'.format(waittime))
+            timelist_2 = [x // 2 for x in timelist]
+            print(timelist)
+            print(timelist_2)
+            jiange_time = 0
 
-                if device["device_type"] == 'X70':
-                    waittime = (intervals_items // 3) * 2
-                else:
-                    waittime = (intervals_items // 3) * 2
+            for i in range(len(timelist)) :
+                if i == 0 :
+                    waittime = timelist_2[i]
+                else :
+                    waittime = timelist[i-1] - timelist_2[i-1] - jiange_time + timelist_2[i]
+                print("waittime: ", waittime)
                 time.sleep(waittime)
                 file_path = f'./picture/{device["device_type"]}/{device["xstudio_version"]}/{device["screen_width"]} {device["screen_height"]}'
                 file_path1 = f'./picture/{device["device_type"]}/{device["xstudio_version"]}/{device["screen_width"]} {device["screen_height"]}/Now'
                 if save_or_contrast_bmp == 0 :
                     print("下载图片")
                     logger.info("下载图片")
-                    DownBmp(ip = ip, port = port).downbmp("{0}/{1}-{2}.bmp".format(file_path, playlist_id,i))
+                    res3 = DownBmp(ip = ip, port = port).downbmp("{0}/{1}-{2}.bmp".format(file_path, playlist_id,i))
+                    jiange_time = res3
                 if save_or_contrast_bmp == 1 :
                     logger.info("下载图片并对比")
                     print("下载图片并对比")
-                    DownBmp(ip = ip, port = port).downbmp("{0}/{1}-{2}.bmp".format(file_path1, playlist_id,i))
+                    res3 = DownBmp(ip = ip, port = port).downbmp("{0}/{1}-{2}.bmp".format(file_path1, playlist_id,i))
                     contrast_result = CompareImage().compare_image("{0}/{1}-{2}.bmp".format(file_path, playlist_id,i),
                                                                    "{0}/{1}-{2}.bmp".format(file_path1, playlist_id,i),
                                                                    playlist_id)
                     logger.warning("对比图片结果 {}".format(contrast_result))
+                    jiange_time = res3
                     if contrast_result :
                         print('图片对比通过')
                     else :

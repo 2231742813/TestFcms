@@ -30,7 +30,7 @@ class CompareImage:
                         if color1 == color2:
                             imgA.putpixel((x, y), (255, 255, 255))
                         else:
-                            imgA.putpixel((x, y), (255, 0, 0))
+                            imgA.putpixel((x, y), (0, 0, 0))
 
                 error_url = ""
                 for i in range(min(len(path_one), len(path_two))) :

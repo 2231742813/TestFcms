@@ -1,17 +1,19 @@
 # 是否开启图片推送功能  对比失败时会将图片推送到群
 error_pic_send_switch: 1
 # 企业微信机器人地址,必须与图片服务器在一个局域网下才能查看图片
+# 测试使用 https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f870641c-196e-410e-adec-8ca27daa8d9b
+# jenkins集成 https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=c7523b8b-04be-4d9a-b9b4-0821cc6f79e9
 webhook_url2: https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f870641c-196e-410e-adec-8ca27daa8d9b
 # 为0，上载播放表后会将currentframe.bmp图片存储在指定的X目录  为1将会与当前currentframe.bmp图片与的X目录的图片对比
-save_or_contrast_bmp: 1
+save_or_contrast_bmp: 0
 # 等待时间 秒
 wait_time: 30
 # 测试用例的名称
 case_name: P0 simplify use cases.csv
 # 截取播放表开始例如想单独测17号播放表 cut_the_length_playlist_head为17 cut_the_length_playlist_tail为18
-cut_the_length_playlist_head: 31
+cut_the_length_playlist_head: 33
 # 截取的播放表列表的尾巴
-cut_the_length_playlist_tail: 33
+cut_the_length_playlist_tail: 34
 # 每项的间隔时间
 intervals_items: 30
 
