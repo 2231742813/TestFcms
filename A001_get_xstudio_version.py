@@ -26,6 +26,7 @@ class GetXstudioVersion(FcmsTool) :
             self.a.send(data)
             # 接受返回数据
             msg = self.a.recv(1024)
+            msg = self.reverse_byte(msg)
             res1 = msg[3 :-9].decode('utf-8')
             logger.error("get xstudio version success {0}".format(self.ip))
             return res1

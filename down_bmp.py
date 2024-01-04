@@ -8,8 +8,8 @@ blocksize = int(config_data['blocksize'])
 
 
 class DownBmp(FcmsTool) :
-    def __init__(self, ip, port) :
-        super().__init__(ip, port)
+    def __init__(self, ip, port, outtime=5) :
+        super().__init__(ip, port, outtime=8)
         logger.info("下载bmp 控制器信息：%s %s" % (ip, port))
         self.size = 1024
 
@@ -65,5 +65,5 @@ class DownBmp(FcmsTool) :
 
 
 
-if __name__ == "__main__":
-   DownBmp(ip = '10.10.10.180', port = 2929).downbmp("2.bmp")
+# if __name__ == "__main__":
+#    DownBmp(ip = '10.10.10.188', port = 2929).downbmp("2.bmp")

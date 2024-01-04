@@ -7,11 +7,13 @@ save_or_contrast_bmp: 1
 # 等待时间 秒
 wait_time: 30
 # 测试用例的名称
-case_name: P1 use cases.csv
-# 截取的生成的播放表列表长度
-cut_the_length_playlist: 0
-
-
+case_name: P0 simplify use cases.csv
+# 截取播放表开始例如想单独测17号播放表 cut_the_length_playlist_head为17 cut_the_length_playlist_tail为18
+cut_the_length_playlist_head: 31
+# 截取的播放表列表的尾巴
+cut_the_length_playlist_tail: 33
+# 每项的间隔时间
+intervals_items: 30
 
 
 

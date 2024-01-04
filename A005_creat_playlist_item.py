@@ -1,5 +1,54 @@
 import random
 import time
+from datetime import datetime
+
+
+
+
+def down():
+    start = datetime.now()
+    print("start---------Down")
+    randomtime = random.randint(5,10)
+    time.sleep(randomtime)
+    end = datetime.now()
+    sumtime = end - start
+    print("end--------------Down")
+    print(sumtime)
+    return down()
+
+timelist = ['2300', '1700', '1300', '2000','1500']
+timelist = [int(x) for x in timelist]
+timelist = [x // 100 for x in timelist]
+timelist_2 = [x // 2 for x in timelist]
+print(timelist)
+print(timelist_2)
+jiange_time = 0
+for i in range(len(timelist)) :
+    if i == 0:
+        waittime = timelist_2[i]
+    else:
+        waittime = timelist[i-1] + timelist_2[i] - jiange_time
+    print("waittime: ", waittime)
+    time.sleep(waittime)
+    res = down()
+    jiange_time = res
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #
 # # 生成10条数据
@@ -52,25 +101,67 @@ import time
 #     newlist.append(num)
 # print(newlist)
 
-timelist = ['2300', '1700', '1300', '2900','1100']
-timelist = [int(x) for x in timelist]
-timelist = [x // 100 for x in timelist]
-jiange_time = 7
-num = 0
-newlist = [jiange_time]
-for i in range(len(timelist)-1) :
-    num = newlist[i] + timelist[i]
-    print(num)
-    newlist.append(num)
-print(newlist)
-for i in range(len(newlist)) :
-    if i == 0:
-        waittime = newlist[i]
-    else:
-        waittime = newlist[i] - newlist[i-1] - jiange_time
-    print(waittime)
-    time.sleep(waittime)
-    print('取当前显示画面')
+
+
+from datetime import datetime
+# def down():
+#     start = datetime.now()
+#     print("Down")
+#     randomtime = random.randint(5,10)
+#     time.sleep(randomtime)
+#     end = datetime.now()
+#     sumtime = end - start
+#     print(sumtime)
+#     return down()
+#
+# timelist = ['2300', '1700', '1300', '2000','1500']
+# timelist = [int(x) for x in timelist]
+# timelist = [x // 100 for x in timelist]
+# jiange_time = 5
+# num = 0
+# newlist = [jiange_time]
+# for i in range(len(timelist)-1) :
+#     num = newlist[i] + timelist[i]
+#     print(num)
+#     newlist.append(num)
+# print(newlist)
+# for i in range(len(newlist)) :
+#     if i == 0:
+#         waittime = newlist[i]
+#     else:
+#         waittime = newlist[i] - newlist[i-1] - jiange_time
+#
+#     res = down()
+
+
+
+
+# import time
+# import random
+#
+# def download_current_image():
+#     print('Downloading start')
+#     # 模拟下载当前图片所需的时间，假设为1到3秒
+#     download_time = random.randint(3, 10)
+#     time.sleep(download_time)
+#     print('Downloading end')
+#     return download_time  # 返回下载所需的时间
+#
+# # 0-10秒显示A画面，10-26秒显示B画面，26-44s显示C画面
+# frame_times = [14, 16, 18]
+#
+# for time_in_frame in frame_times:
+#     remaining_time = time_in_frame
+#     while remaining_time > 0:
+#         download_time = download_current_image()  # 调用下载当前图片的函数
+#         remaining_time -= download_time  # 减去已经下载的时间
+#         if remaining_time > 0:
+#             time.sleep(remaining_time)  # 等待剩余的时间
+
+
+
+
+
 
 
 

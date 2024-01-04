@@ -29,12 +29,14 @@ whether_str_affirm = int(whether_data['whether_str_affirm'])
 blocksize = int(whether_data['blocksize'])
 save_bmp_url = str(whether_data['save_bmp_url'])
 error_pic_send_switch = int(whether_data['error_pic_send_switch'])
-cut_the_length_playlist = int(whether_data['cut_the_length_playlist'])
+cut_the_length_playlist_head = int(whether_data['cut_the_length_playlist_head'])
+cut_the_length_playlist_tail = int(whether_data['cut_the_length_playlist_tail'])
+intervals_items = int(whether_data['intervals_items'])
 
 # 读播放表 是个列表
 playlists = Read_CSV().Playlist_csv(case_name)
 # 裁剪播放列表
-playlists = playlists[cut_the_length_playlist::]
+playlists = playlists[cut_the_length_playlist_head:cut_the_length_playlist_tail:]
 
 def loop_control(device, item) :
 
@@ -108,6 +110,11 @@ def loop_control(device, item) :
                 else :
                     waittime = newlist[i] - newlist[i - 1] - 7
                 print('等待下一个播放项 {}S'.format(waittime))
+
+                if device["device_type"] == 'X70':
+                    waittime = (intervals_items // 3) * 2
+                else:
+                    waittime = (intervals_items // 3) * 2
                 time.sleep(waittime)
                 file_path = f'./picture/{device["device_type"]}/{device["xstudio_version"]}/{device["screen_width"]} {device["screen_height"]}'
                 file_path1 = f'./picture/{device["device_type"]}/{device["xstudio_version"]}/{device["screen_width"]} {device["screen_height"]}/Now'
